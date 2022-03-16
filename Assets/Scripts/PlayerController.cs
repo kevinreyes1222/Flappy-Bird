@@ -33,5 +33,6 @@ public class PlayerController : MonoBehaviour
 	{
 		isDead = true;
 		playerAnimator.SetTrigger("Die");
+		GameManager.Instance.GameOver();
 	}
 }
