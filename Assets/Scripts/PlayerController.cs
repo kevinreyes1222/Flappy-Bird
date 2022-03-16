@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	private Rigidbody2D playerRb;
+	private Animator playerAnimator;
 	
 	[SerializeField] private float upForce = 350f;
 	
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 	    playerRb = GetComponent<Rigidbody2D>();
+	    playerAnimator = GetComponent<Animator>();
     }
 
    
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	    {
 	    	playerRb.velocity = Vector2.zero;
 	    	playerRb.AddForce(Vector2.up * upForce);
+	    	playerAnimator.SetTrigger("Flap");
 	    }
     }
     
@@ -29,5 +32,6 @@ public class PlayerController : MonoBehaviour
 	protected void OnCollisionEnter2D()
 	{
 		isDead = true;
+		playerAnimator.SetTrigger("Die");
 	}
 }
