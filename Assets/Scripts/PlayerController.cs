@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+	private Rigidbody2D playerRb;
+	
+	[SerializeField] private float upForce = 350f;
+	
+	private bool isDead = false;
+    
     void Start()
     {
-        
+	    playerRb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        
+	    if (Input.GetButtonDown("Jump") && !isDead)
+	    {
+	    	playerRb.velocity = Vector2.zero;
+	    	playerRb.AddForce(Vector2.up * upForce);
+	    }
     }
+    
+	
+	protected void OnCollisionEnter2D()
+	{
+		isDead = true;
+	}
 }
