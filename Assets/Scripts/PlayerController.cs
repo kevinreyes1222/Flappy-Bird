@@ -31,8 +31,10 @@ public class PlayerController : MonoBehaviour
 	
 	protected void OnCollisionEnter2D()
 	{
+		
 		isDead = true;
 		playerAnimator.SetTrigger("Die");
 		GameManager.Instance.GameOver();
+		
 	}
 }
